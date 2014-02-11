@@ -301,7 +301,7 @@ class BigInteger {
 			if (i-->0) {
 					if (p<DB && (d=chunks[i]>>p)>0) {
 							m = true;
-							bb.writeByte(d);
+							bb.addByte(d);
 							c++;
 					}
 					while (i >= 0) {
