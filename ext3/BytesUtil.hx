@@ -24,7 +24,6 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
  * THE POSSIBILITY OF SUCH DAMAGE.
  */
-
 import I32;
 
 class BytesUtil {
@@ -68,8 +67,8 @@ class BytesUtil {
 		Return a hex representation of the byte b. If
 		b > 255 only the lowest 8 bits are used.
 	**/
-	public static function byte32ToHex(b : Int32) {
-		var bs : Int = I32.toInt(I32.and(b, I32.ofInt(0xFF)));
+	public static function byte32ToHex(b : haxe.Int32) {
+		var bs : Int = b & 0xFF;
 		return StringTools.hex(bs,2).toLowerCase();
 	}
 
@@ -78,7 +77,7 @@ class BytesUtil {
 		If the string length is not a multiple of 4, it will be 0 padded
 		at the end.
 	**/
-	public static function bytesToInt32LE(s : Bytes) : Array<Int32>
+	public static function bytesToInt32LE(s : Bytes) : Array<haxe.Int32>
 	{
 		return I32.unpackLE(nullPad(s,4));
 	}
@@ -156,7 +155,7 @@ class BytesUtil {
 	/*
 		Convert an array of 32bit integers to a little endian Bytes<br />
 	**/
-	public static inline function int32ToBytesLE(l : Array<Int32>) : Bytes
+	public static inline function int32ToBytesLE(l : Array<haxe.Int32>) : Bytes
 	{
 		return I32.packLE(l);
 	}
@@ -167,13 +166,12 @@ class BytesUtil {
 		padToBytes. 0 length input returns 0 length output, not
 		padded.
 	**/
-	public static function int32ArrayToBytes(a: Array<Int32>, ?padToBytes:Int) : Bytes  {
+	public static function int32ArrayToBytes(a: Array<haxe.Int32>, ?padToBytes:Int) : Bytes  {
 		var sb = new BytesBuffer();
 		for(v in a) {
-			var i = I32.toInt(v);
-			if(i > 0xFF || i < 0)
+			if(v > 0xFF || v < 0)
 				throw "Value out of range";
-			sb.addByte(i);
+			sb.addByte(v);
 		}
 		if(padToBytes != null && padToBytes > 0) {
 			return nullPad(sb.getBytes(), padToBytes);
