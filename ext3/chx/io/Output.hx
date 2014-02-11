@@ -29,7 +29,6 @@ import chx.lang.BlockedException;
 import chx.lang.OverflowException;
 import chx.lang.OutsideBoundsException;
 import chx.lang.EofException;
-import chx.vm.Lock;
 
 /**
 	An Output is an abstract writer. A specific output implementation will only
@@ -39,8 +38,6 @@ import chx.vm.Lock;
 class Output {
 
 	public var bigEndian(default,set) : Bool;
-	/** A chx.vm.Lock may be added to the Output and available for use **/
-	public var lock : Lock;
 
 	/**
 		Write a single byte (Unsigned Int 8) to the output
