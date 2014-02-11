@@ -29,7 +29,6 @@ import chx.lang.BlockedException;
 import chx.lang.OverflowException;
 import chx.lang.OutsideBoundsException;
 import chx.lang.EofException;
-import chx.text.Sprintf;
 import chx.vm.Lock;
 
 /**
@@ -362,7 +361,6 @@ class Output {
 	 * @param	args arguments to substitute into format
 	 * @param	prependLength set to true to use writeUTF() method
 	 * @return this output stream
-	 */
 	public function printf( format : String, args:Array<Dynamic> = null, prependLength:Bool = false) : Output {
 		var s = Sprintf.format(format, args);
 		if (prependLength) {
@@ -371,7 +369,7 @@ class Output {
 			writeString(s);
 		}
 		return this;
-	}
+	}*/
 	
 	public function toString() : String  {
 		return Type.getClassName(Type.getClass(this));
