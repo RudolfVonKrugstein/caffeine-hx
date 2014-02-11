@@ -80,7 +80,7 @@ class Assert {
 	* Asserts that expr evaluates to true
 	* @param expr An expression that evaluates to a Bool
 	**/
-	@:macro public static function isTrue( expr:Expr ) : Expr {
+	macro public static function isTrue( expr:Expr ) : Expr {
 		if(!Context.defined("debug"))
 			return { expr : EBlock(new Array()), pos : Context.currentPos() };
 		var pos = Context.currentPos();
@@ -112,7 +112,7 @@ class Assert {
 	* Asserts that expr evaluates to false
 	* @param expr An expression that evaluates to a Bool
 	**/
-	@:macro public static function isFalse( expr:Expr ) : Expr {
+	macro public static function isFalse( expr:Expr ) : Expr {
 		if(!Context.defined("debug"))
 			return { expr : EBlock(new Array()), pos : Context.currentPos() };
 		var pos = Context.currentPos();
@@ -144,7 +144,7 @@ class Assert {
 	* Checks that the passed expression is not null.
 	* @param expr A string, class or anything that can be tested for null
 	**/
-	@:macro public static function isNotNull( expr:Expr ) : Expr {
+	macro public static function isNotNull( expr:Expr ) : Expr {
 		if(!Context.defined("debug"))
 			return { expr : EBlock(new Array()), pos : Context.currentPos() };
 		var pos = Context.currentPos();
