@@ -30,7 +30,7 @@ package chx.crypt.rsa;
 /**
  * Pads that work on blocks, and not on the full buffer.
  **/
-class PadBlockBase extends chx.crypt.PadBase, implements IBlockPad {
+class PadBlockBase extends chx.crypt.padding.PadBase implements IBlockPad {
 	/** the number of bytes that can fit in each block **/
 	public var textSize(default,null) : Int;
 

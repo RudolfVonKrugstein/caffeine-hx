@@ -35,7 +35,7 @@ import chx.lang.IllegalArgumentException;
 /**
  * Pads with 0xFF bytes
  **/
-class PadPkcs1Type1 extends PadBlockBase, implements IBlockPad {
+class PadPkcs1Type1 extends PadBlockBase implements IBlockPad {
 	/** only for Type1, the byte to pad with, default 0xFF **/
 	@:isVar public var padByte(get,set) : Int;
 	var padCount : Int;
