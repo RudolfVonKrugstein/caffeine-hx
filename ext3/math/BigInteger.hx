@@ -354,11 +354,7 @@ class BigInteger {
 			var r:String = "";
 			divRemTo(d,y,z);
 			while(y.sigNum() > 0) {
-				r = I32.baseEncode(
-						I32.add(
-							I32.ofInt(a),
-							z.toInt32()
-						), b).substr(1) + r;
+				r = I32.baseEncode(haxe.Int32.addInt(z.toInt32(),a), b).substr(1) + r;
 				y.divRemTo(d,y,z);
 			}
 			return I32.baseEncode(z.toInt32(), b) + r;
