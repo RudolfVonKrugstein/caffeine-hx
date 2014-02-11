@@ -42,6 +42,7 @@ class PadPkcs1Type1 extends PadBlockBase implements IBlockPad {
 	var typeByte : Int;
 
 	public function new(size:Int) {
+        super();
 		Reflect.setField(this,"blockSize",size);
 		setPadCount(8);
 		typeByte = 1;
