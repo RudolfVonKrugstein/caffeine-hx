@@ -28,7 +28,7 @@
 package chx.crypt;
 
 interface IBlockCipher {
-	var blockSize(__getBlockSize,null) : Int;
+	@:isVar var blockSize(get,null) : Int;
 	function encryptBlock( plain : Bytes ) : Bytes;
 	function decryptBlock( enc : Bytes ) : Bytes;
 }
