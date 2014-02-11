@@ -42,7 +42,7 @@ class PadBlockBase extends chx.crypt.padding.PadBase implements IBlockPad {
 		return n;
 	}
 
-	override public function getBytesReadPerBlock() : Int {
+	public function getBytesReadPerBlock() : Int {
 		return blockSize - blockOverhead();
 	}
 

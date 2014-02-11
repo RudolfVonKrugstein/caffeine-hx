@@ -48,11 +48,11 @@ class PadPkcs1Type1 extends PadBlockBase implements IBlockPad {
 		padByte = 0xFF;
 	}
 
-	public function getBytesReadPerBlock() : Int {
+	override public function getBytesReadPerBlock() : Int {
 		return textSize;
 	}
 
-	public function pad( s : Bytes ) : Bytes {
+	override public function pad( s : Bytes ) : Bytes {
 		if(s.length > textSize)
 			throw new Exception("Unable to pad block: provided buffer is " + s.length + " max is " + textSize);
 		var sb = new BytesBuffer();
@@ -60,7 +60,7 @@ class PadPkcs1Type1 extends PadBlockBase implements IBlockPad {
 		sb.addByte(typeByte);
 		var n = blockSize - s.length - 3; //padCount + (textSize - s.length);
 		while(n-- > 0) {
-			sb.addByte(getPadByte());
+			sb.addByte(get_padByte());
 		}
 		sb.addByte(0);
 		sb.add(s);
@@ -72,7 +72,7 @@ class PadPkcs1Type1 extends PadBlockBase implements IBlockPad {
 		return rv;
 	}
 
-	public function unpad( s : Bytes ) : Bytes {
+	override public function unpad( s : Bytes ) : Bytes {
 		// src string may be shorter than block size. This happens when
 		// converting to BigIntegers then to padded string before calling
 		// unpad.
@@ -99,7 +99,7 @@ class PadPkcs1Type1 extends PadBlockBase implements IBlockPad {
 		return sb.getBytes();
 	}
 
-	public function calcNumBlocks(len : Int) : Int {
+	override public function calcNumBlocks(len : Int) : Int {
 		return Math.ceil(len/textSize);
 	}
 
