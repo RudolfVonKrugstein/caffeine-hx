@@ -38,7 +38,7 @@ class Assert {
 	* @param expected Any expression that can test against actual
 	* @param actual Any expression that can test againt expected
 	**/
-	@:macro public static function isEqual( expected : Expr, actual : Expr ) : Expr {
+	macro public static function isEqual( expected : Expr, actual : Expr ) : Expr {
 		if(!Context.defined("debug"))
 			return { expr : EBlock(new Array()), pos : Context.currentPos() };
 		var pos = Context.currentPos();
@@ -62,8 +62,8 @@ class Assert {
 							{ expr : EConst(CString("Assertion failed. Expected ")), pos : pos },
 							{ expr : EBinop(
 								OpAdd,
-								{ expr : ECall({ expr : EField({ expr : EConst(CType("Std")), pos : pos },"string"),pos : pos },[expected]), pos : pos },
-								{ expr : EBinop(OpAdd, { expr : EConst(CString(". Got ")), pos : pos }, { expr : ECall({ expr : EField({ expr : EConst(CType("Std")), pos : pos },"string"), pos : pos },[actual]), pos : pos }), pos:pos}
+								{ expr : ECall({ expr : EField({ expr : EConst(CIdent("Std")), pos : pos },"string"),pos : pos },[expected]), pos : pos },
+								{ expr : EBinop(OpAdd, { expr : EConst(CString(". Got ")), pos : pos }, { expr : ECall({ expr : EField({ expr : EConst(CIdent("Std")), pos : pos },"string"), pos : pos },[actual]), pos : pos }), pos:pos}
 								),
 							pos : pos
 							}),
