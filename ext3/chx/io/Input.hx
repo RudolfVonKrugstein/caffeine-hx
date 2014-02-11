@@ -299,11 +299,11 @@ class Input {
 		Reads 4 bytes, returning a signed Int32
 	**/
 	public function readInt32() : haxe.Int32 {
-		var ch1 = readByte();
-		var ch2 = readByte();
-		var ch3 = readByte();
-		var ch4 = readByte();
-		return bigEndian ? haxe.Int32.make((ch1 << 8) | ch2,(ch3 << 8) | ch4) : haxe.Int32.make((ch4 << 8) | ch3,(ch2 << 8) | ch1);
+		var ch1 : haxe.Int32 = readByte();
+		var ch2 : haxe.Int32 = readByte();
+		var ch3 : haxe.Int32 = readByte();
+		var ch4 : haxe.Int32 = readByte();
+		return bigEndian ? (ch1 << 24) | (ch2 << 16) | (ch3 << 8) | (ch4) : (ch4 << 24) | (ch3 << 16) | (ch2 << 8) | (ch1);
 	}
 
 	/**
