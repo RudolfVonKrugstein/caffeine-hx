@@ -96,7 +96,7 @@ class EReg {
 			global = a.length > 1;
 			if( global )
 				opt = a.join("");
-			this.r = regexp_new_options(Lib.haxeStringToNeko(r), Lib.haxeStringToNeko(opt));
+			this.r = regexp_new_options(LibExtra.haxeStringToNeko(r), LibExtra.haxeStringToNeko(opt));
 		#elseif js
 			opt = opt.split("u").join(""); // 'u' (utf8) depends on page encoding
 			this.r = untyped __new__("RegExp",r,opt);
@@ -132,7 +132,7 @@ class EReg {
 	**/
 	public function match( s : String ) : Bool {
 		#if (neko || cpp)
-			var p = regexp_match(r,Lib.haxeStringToNeko(s),0,s.length);
+			var p = regexp_match(r,LibExtra.haxeStringToNeko(s),0,s.length);
 			if( p )
 				last = s;
 			else
@@ -321,7 +321,7 @@ class EReg {
 			var a = new Array();
 			var first = true;
 			do {
-				if( !regexp_match(r,Lib.haxeStringToNeko(s),pos,len) )
+				if( !regexp_match(r,LibExtra.haxeStringToNeko(s),pos,len) )
 					break;
 				var p = regexp_matched_pos(r,0);
 				if( p.len == 0 && !first ) {
@@ -361,7 +361,7 @@ class EReg {
 			var a = by.split("$");
 			var first = true;
 			do {
-				if( !regexp_match(r,Lib.haxeStringToNeko(s),pos,len) )
+				if( !regexp_match(r,LibExtra.haxeStringToNeko(s),pos,len) )
 					break;
 				var p = regexp_matched_pos(r,0);
 				if( p.len == 0 && !first ) {
