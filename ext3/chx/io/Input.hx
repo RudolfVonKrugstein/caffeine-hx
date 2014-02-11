@@ -38,8 +38,8 @@ class Input {
 	/**
 		Returns number of bytes available to be read without blocking.
 	**/
-	public var bytesAvailable(__getBytesAvailable, null) : Int;
-	public var bigEndian(default,__setEndian) : Bool;
+	public var bytesAvailable(get, null) : Int;
+	public var bigEndian(default,set) : Bool;
 
 	/**
 		Abstract method for reading an unsigned 8 bit value from the
@@ -348,11 +348,11 @@ class Input {
 	//               Getters/Setters                //
 	//////////////////////////////////////////////////
 
-	function __getBytesAvailable() : Int {
+	function get_bytesAvailable() : Int {
 		return throw new chx.lang.FatalException("Not implemented");
 	}
 
-	function __setEndian(b) {
+	function set_bigEndian(b) {
 		bigEndian = b;
 		return b;
 	}

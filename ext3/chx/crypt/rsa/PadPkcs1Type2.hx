@@ -41,7 +41,7 @@ class PadPkcs1Type2 extends PadPkcs1Type1, implements IBlockPad {
 		rng = new Random();
 	}
 
-	override public function getPadByte() : Int {
+	override public function get_padByte() : Int {
 		var x: Int = 0;
 		while(x == 0) x = rng.next();
 		return x;

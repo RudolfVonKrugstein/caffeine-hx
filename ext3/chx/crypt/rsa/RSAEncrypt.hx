@@ -37,11 +37,11 @@ import math.prng.Random;
 class RSAEncrypt implements IBlockCipher {
 	// public key
 	/** modulus **/
-	public var n(get_n,set_n) : BigInteger;
+	@:isVar public var n(get_n,set_n) : BigInteger;
 	/** exponent. <2^31 **/
-	public var e(get_e,set_e) : Int;
-	public var blockSize(__getBlockSize,null) : Int;
-	public var blockPad(getBlockPad,setBlockPad) : IBlockPad;
+	@:isVar public var e(get_e,set_e) : Int;
+	public var blockSize(get,null) : Int;
+	@:isVar public var blockPad(get,set) : IBlockPad;
 	#if useOpenSSL
 	var handle:Dynamic;
 	var iBlockPad : Int;
@@ -62,11 +62,11 @@ class RSAEncrypt implements IBlockCipher {
 		this.e = 0;
 	}
 
-	public function getBlockPad() : IBlockPad {
+	public function get_blockPad() : IBlockPad {
 		return this.blockPad;
 	}
 
-	public function setBlockPad(v:IBlockPad) : IBlockPad {
+	public function set_blockPad(v:IBlockPad) : IBlockPad {
 		this.blockPad = v;
 		return v;
 	}
@@ -175,7 +175,7 @@ class RSAEncrypt implements IBlockCipher {
 	* @param text Text to encrypt.
 	* @param separator character to put between hex values in output
 	**/
-	public function encyptText( text : String, separator:String = ":") : String {
+	public function encryptText( text : String, separator:String = ":") : String {
 		return BytesUtil.toHex(
 				encrypt( Bytes.ofString(text) ),
 				":");
@@ -275,7 +275,7 @@ class RSAEncrypt implements IBlockCipher {
 	//////////////////////////////////////////////////
 	//             getters/setters                  //
 	//////////////////////////////////////////////////
-	function __getBlockSize() : Int {
+	function get_blockSize() : Int {
 		#if useOpenSSL
 		return rsa_size(handle);
 		#else

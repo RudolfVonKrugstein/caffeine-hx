@@ -29,7 +29,7 @@ import chx.lang.OutsideBoundsException;
 import chx.lang.OverflowException;
 
 class BytesInput extends Input {
-	public var position(getPosition, setPosition) : Int;
+	public var position(get, set) : Int;
 	var b : chx.io.BytesData;
 	#if !flash9
 	var pos : Int;
@@ -128,7 +128,7 @@ class BytesInput extends Input {
 		return len;
 	}
 
-	override function __getBytesAvailable() : Int {
+	override function get_bytesAvailable() : Int {
 		#if flash9
 			return b.bytesAvailable;
 		#else
@@ -144,25 +144,25 @@ class BytesInput extends Input {
 	**/
 	public function peek(pos:Null<Int> = null) : Int {
 		if(pos == null)
-			pos = getPosition();
-		var orig = getPosition();
-		setPosition(pos);
+			pos = get_position();
+		var orig = get_position();
+		set_position(pos);
 		var d = readByte();
-		setPosition(orig);
+		set_position(orig);
 		return d;
 	}
 
-	public function setPosition(p:Int) : Int {
+	public function set_position(p:Int) : Int {
 		#if flash9
 			b.position = p;
 		#else
-			len = len + (getPosition() - p);
+			len = len + (get_position() - p);
 			pos = p;
 		#end
 		return p;
 	}
 
-	public function getPosition() : Int {
+	public function get_position() : Int {
 		#if flash9
 			return b.position;
 		#else

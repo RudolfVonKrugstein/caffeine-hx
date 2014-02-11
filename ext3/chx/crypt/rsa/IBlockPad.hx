@@ -29,7 +29,7 @@ package chx.crypt.rsa;
 
 interface IBlockPad {
 	/** finished padded block size **/
-	var blockSize(default,setBlockSize) : Int;
+	var blockSize(default,set) : Int;
 
 	function pad( s : Bytes ) : Bytes;
 

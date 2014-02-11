@@ -30,7 +30,7 @@ package chx.crypt;
 interface IPad {
 
 	/** finished padded block size **/
-	var blockSize(default,setBlockSize) : Int;
+	var blockSize(default,set_blockSize) : Int;
 
 	function pad( s : Bytes ) : Bytes;
 

@@ -29,11 +29,11 @@ package chx.crypt.padding;
 
 class PadBase implements IPad {
 
-	public var blockSize(default,setBlockSize) : Int;
+	public var blockSize(default,set) : Int;
 
 	public function new( blockSize : Null<Int> = null ) {
 		if(blockSize != null)
-			setBlockSize(blockSize);
+			set_blockSize(blockSize);
 	}
 
 	public function pad( s : Bytes ) : Bytes {
@@ -44,7 +44,7 @@ class PadBase implements IPad {
 		return throw new chx.lang.FatalException("not implemented");
 	}
 
-	function setBlockSize(len : Int) : Int {
+	function set_blockSize(len : Int) : Int {
 		blockSize = len;
 		return len;
 	}

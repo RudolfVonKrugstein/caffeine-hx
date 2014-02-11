@@ -37,7 +37,7 @@ import chx.lang.IllegalArgumentException;
  **/
 class PadPkcs1Type1 extends PadBlockBase, implements IBlockPad {
 	/** only for Type1, the byte to pad with, default 0xFF **/
-	public var padByte(getPadByte,setPadByte) : Int;
+	@:isVar public var padByte(get,set) : Int;
 	var padCount : Int;
 	var typeByte : Int;
 
@@ -119,7 +119,7 @@ class PadPkcs1Type1 extends PadBlockBase, implements IBlockPad {
 		return x;
 	}
 
-	private function setBlockSize( x : Int ) : Int {
+	override private function set_blockSize( x : Int ) : Int {
 		this.blockSize = x;
 		this.textSize = x - 3 - padCount;
 		if(textSize <= 0)
@@ -127,11 +127,11 @@ class PadPkcs1Type1 extends PadBlockBase, implements IBlockPad {
 		return x;
 	}
 
-	public function getPadByte() : Int {
+	public function get_padByte() : Int {
 		return this.padByte;
 	}
 
-	public function setPadByte(x : Int) : Int {
+	public function set_padByte(x : Int) : Int {
 		this.padByte = x & 0xFF;
 		return x;
 	}
