@@ -36,7 +36,7 @@ import math.BigInteger;
 	Full RSA encryption class. For encryption only, the base class
 	RSAEncrypt can be used instead.
 **/
-class RSA extends RSAEncrypt, implements IBlockCipher {
+class RSA extends RSAEncrypt implements IBlockCipher {
 	public var d : BigInteger;		// private key
 	public var p : BigInteger;		// prime 1
 	public var q : BigInteger;		// prime 2
