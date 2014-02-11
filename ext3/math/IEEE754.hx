@@ -80,7 +80,7 @@ class IEEE754 {
 	inline static var bias = 1024;
 	inline static var cnst = 2102;   // 1 (carry bit) + 1023 + 1 + 1022 + 53 + 2 (round bits)
 
-	var bigEndian(default,setEndian) : Bool;
+	var bigEndian(default,set) : Bool;
 	var input : Float;
 
 	var rounding : Bool;
@@ -123,7 +123,7 @@ class IEEE754 {
 // 			this.Result[i] = 0;
 	}
 
-	function setEndian( b ) {
+	function set_bigEndian( b ) {
 		bigEndian = b;
 		return b;
 	}
