@@ -33,7 +33,6 @@
 package math;
 
 import haxe.io.BytesData;
-import I32;
 
 #if neko
 enum HndBI {
@@ -140,7 +139,7 @@ class BigInteger {
 		Set from an integer value. If x is less than -DV, the integer will
 		be parsed through fromString.
 	**/
-	public function fromInt32(x : Int32) : Void {
+	public function fromInt32(x : haxe.Int32) : Void {
 		#if (neko || useOpenSSL)
 			_hnd = bi_from_int32(_hnd, x);
 		#else
@@ -168,7 +167,7 @@ class BigInteger {
 		int does not support the bitlength of this BigInteger, unpredictable
 		values will occur.
 	**/
-	public function toInt32() : Int32 {
+	public function toInt32() : haxe.Int32 {
 		#if (neko || useOpenSSL)
 			return bi_to_int32(_hnd);
 		#else
@@ -1615,8 +1614,8 @@ class BigInteger {
 	public static var F1 : Int;
 	public static var F2 : Int;
 
-	public static var ZERO(getZERO,null)	: BigInteger;
-	public static var ONE(getONE, null)		: BigInteger;
+	public static var ZERO(get,null)	: BigInteger;
+	public static var ONE(get, null)		: BigInteger;
 
 	// Digit conversions
 	#if as3gen public #end static var BI_RM : String;
@@ -1695,14 +1694,14 @@ class BigInteger {
 	/**
 		Getter function for static var ZERO
 	**/
-	static function getZERO() : BigInteger {
+	static function get_ZERO() : BigInteger {
 		return nbv(0);
 	}
 
 	/**
 		Getter funtion for static var ONE
 	**/
-	static function getONE() : BigInteger {
+	static function get_ONE() : BigInteger {
 		return nbv(1);
 	}
 
@@ -1829,7 +1828,7 @@ class BigInteger {
 	/**
 		Construct a BigInteger from an integer value
 	**/
-	public static function ofInt32(x : Int32) : BigInteger {
+	public static function ofInt32(x : haxe.Int32) : BigInteger {
 		var i = nbi();
 		i.fromInt32(x);
 		return i;
@@ -2061,62 +2060,62 @@ class BigInteger {
 		bi_rand_seed(x.getData());
 	}
 
-	private static var bi_new=chx.Lib.load("openssl","bi_new",0);
-	private static var destroy_biginteger=chx.Lib.load("openssl","destroy_biginteger",1);
-	private static var bi_ZERO=chx.Lib.load("openssl","bi_ZERO",0);
-	private static var bi_ONE=chx.Lib.load("openssl","bi_ONE",0);
-	private static var bi_copy=chx.Lib.load("openssl","bi_copy",2);
-	private static var bi_generate_prime=chx.Lib.load("openssl","bi_generate_prime",2);
-	private static var bi_is_prime=chx.Lib.load("openssl","bi_is_prime",3);
-	private static var bi_abs=chx.Lib.load("openssl","bi_abs",1);
-	private static var bi_add_to=chx.Lib.load("openssl","bi_add_to",3);
-	private static var bi_sub_to=chx.Lib.load("openssl","bi_sub_to",3);
-	private static var bi_mul_to=chx.Lib.load("openssl","bi_mul_to",3);
-	private static var bi_sqr_to=chx.Lib.load("openssl","bi_sqr_to",2);
-	private static var bi_div=chx.Lib.load("openssl","bi_div",2);
-	private static var bi_div_rem_to=chx.Lib.load("openssl","bi_div_rem_to",4);
-	private static var bi_mod=chx.Lib.load("openssl","bi_mod",2);
-	private static var bi_mod_exp=chx.Lib.load("openssl","bi_mod_exp",3);
-	private static var bi_mod_inverse=chx.Lib.load("openssl","bi_mod_inverse",2);
-	private static var bi_pow=chx.Lib.load("openssl","bi_pow",2);
-	private static var bi_gcd=chx.Lib.load("openssl","bi_gcd",2);
-	private static var bi_signum=chx.Lib.load("openssl","bi_signum",1);
-	private static var bi_cmp=chx.Lib.load("openssl","bi_cmp",2);
-	private static var bi_ucmp=chx.Lib.load("openssl","bi_ucmp",2);
-	private static var bi_is_zero=chx.Lib.load("openssl","bi_is_zero",1);
-	private static var bi_is_one=chx.Lib.load("openssl","bi_is_one",1);
-	private static var bi_is_odd=chx.Lib.load("openssl","bi_is_odd",1);
+	private static var bi_new=neko.Lib.load("openssl","bi_new",0);
+	private static var destroy_biginteger=neko.Lib.load("openssl","destroy_biginteger",1);
+	private static var bi_ZERO=neko.Lib.load("openssl","bi_ZERO",0);
+	private static var bi_ONE=neko.Lib.load("openssl","bi_ONE",0);
+	private static var bi_copy=neko.Lib.load("openssl","bi_copy",2);
+	private static var bi_generate_prime=neko.Lib.load("openssl","bi_generate_prime",2);
+	private static var bi_is_prime=neko.Lib.load("openssl","bi_is_prime",3);
+	private static var bi_abs=neko.Lib.load("openssl","bi_abs",1);
+	private static var bi_add_to=neko.Lib.load("openssl","bi_add_to",3);
+	private static var bi_sub_to=neko.Lib.load("openssl","bi_sub_to",3);
+	private static var bi_mul_to=neko.Lib.load("openssl","bi_mul_to",3);
+	private static var bi_sqr_to=neko.Lib.load("openssl","bi_sqr_to",2);
+	private static var bi_div=neko.Lib.load("openssl","bi_div",2);
+	private static var bi_div_rem_to=neko.Lib.load("openssl","bi_div_rem_to",4);
+	private static var bi_mod=neko.Lib.load("openssl","bi_mod",2);
+	private static var bi_mod_exp=neko.Lib.load("openssl","bi_mod_exp",3);
+	private static var bi_mod_inverse=neko.Lib.load("openssl","bi_mod_inverse",2);
+	private static var bi_pow=neko.Lib.load("openssl","bi_pow",2);
+	private static var bi_gcd=neko.Lib.load("openssl","bi_gcd",2);
+	private static var bi_signum=neko.Lib.load("openssl","bi_signum",1);
+	private static var bi_cmp=neko.Lib.load("openssl","bi_cmp",2);
+	private static var bi_ucmp=neko.Lib.load("openssl","bi_ucmp",2);
+	private static var bi_is_zero=neko.Lib.load("openssl","bi_is_zero",1);
+	private static var bi_is_one=neko.Lib.load("openssl","bi_is_one",1);
+	private static var bi_is_odd=neko.Lib.load("openssl","bi_is_odd",1);
 	// random
-	private static var bi_rand_seed=chx.Lib.load("openssl","bi_rand_seed",1);
-	private static var bi_rand=chx.Lib.load("openssl","bi_rand",3);
-	private static var bi_pseudo_rand=chx.Lib.load("openssl","bi_pseudo_rand",3);
+	private static var bi_rand_seed=neko.Lib.load("openssl","bi_rand_seed",1);
+	private static var bi_rand=neko.Lib.load("openssl","bi_rand",3);
+	private static var bi_pseudo_rand=neko.Lib.load("openssl","bi_pseudo_rand",3);
 	// conversion
-	private static var bi_to_hex=chx.Lib.load("openssl","bi_to_hex",1);
-	private static var bi_from_hex=chx.Lib.load("openssl","bi_from_hex",1);
-	private static var bi_to_decimal=chx.Lib.load("openssl","bi_to_decimal",1);
-	private static var bi_from_decimal=chx.Lib.load("openssl","bi_from_decimal",1);
-	private static var bi_to_bin=chx.Lib.load("openssl","bi_to_bin",1);
-	private static var bi_from_bin=chx.Lib.load("openssl","bi_from_bin",1);
-	private static var bi_to_mpi=chx.Lib.load("openssl","bi_to_mpi",1);
-	private static var bi_from_mpi=chx.Lib.load("openssl","bi_from_mpi",1);
-	private static var bi_from_int=chx.Lib.load("openssl","bi_from_int",2);
-	private static var bi_from_int32=chx.Lib.load("openssl","bi_from_int32",2);
-	private static var bi_to_int=chx.Lib.load("openssl","bi_to_int",1);
-	private static var bi_to_int32=chx.Lib.load("openssl","bi_to_int32",1);
+	private static var bi_to_hex=neko.Lib.load("openssl","bi_to_hex",1);
+	private static var bi_from_hex=neko.Lib.load("openssl","bi_from_hex",1);
+	private static var bi_to_decimal=neko.Lib.load("openssl","bi_to_decimal",1);
+	private static var bi_from_decimal=neko.Lib.load("openssl","bi_from_decimal",1);
+	private static var bi_to_bin=neko.Lib.load("openssl","bi_to_bin",1);
+	private static var bi_from_bin=neko.Lib.load("openssl","bi_from_bin",1);
+	private static var bi_to_mpi=neko.Lib.load("openssl","bi_to_mpi",1);
+	private static var bi_from_mpi=neko.Lib.load("openssl","bi_from_mpi",1);
+	private static var bi_from_int=neko.Lib.load("openssl","bi_from_int",2);
+	private static var bi_from_int32=neko.Lib.load("openssl","bi_from_int32",2);
+	private static var bi_to_int=neko.Lib.load("openssl","bi_to_int",1);
+	private static var bi_to_int32=neko.Lib.load("openssl","bi_to_int32",1);
 
 	// bitwise
-	private static var bi_shl_to=chx.Lib.load("openssl","bi_shl_to",3);
-	private static var bi_shr_to=chx.Lib.load("openssl","bi_shr_to",3);
-	private static var bi_bitlength=chx.Lib.load("openssl","bi_bitlength",1);
-	private static var bi_bytelength=chx.Lib.load("openssl","bi_bytelength",1);
-	private static var bi_bits_set=chx.Lib.load("openssl","bi_bits_set",1);
-	private static var bi_lowest_bit_set=chx.Lib.load("openssl","bi_lowest_bit_set",1);
-	private static var bi_set_bit=chx.Lib.load("openssl","bi_set_bit",2);
-	private static var bi_clear_bit=chx.Lib.load("openssl","bi_clear_bit",2);
-	private static var bi_flip_bit=chx.Lib.load("openssl","bi_flip_bit",2);
-	private static var bi_bitwise_to=chx.Lib.load("openssl","bi_bitwise_to",4);
-	private static var bi_not=chx.Lib.load("openssl","bi_not",1);
-	private static var bi_test_bit=chx.Lib.load("openssl","bi_test_bit",2);
+	private static var bi_shl_to=neko.Lib.load("openssl","bi_shl_to",3);
+	private static var bi_shr_to=neko.Lib.load("openssl","bi_shr_to",3);
+	private static var bi_bitlength=neko.Lib.load("openssl","bi_bitlength",1);
+	private static var bi_bytelength=neko.Lib.load("openssl","bi_bytelength",1);
+	private static var bi_bits_set=neko.Lib.load("openssl","bi_bits_set",1);
+	private static var bi_lowest_bit_set=neko.Lib.load("openssl","bi_lowest_bit_set",1);
+	private static var bi_set_bit=neko.Lib.load("openssl","bi_set_bit",2);
+	private static var bi_clear_bit=neko.Lib.load("openssl","bi_clear_bit",2);
+	private static var bi_flip_bit=neko.Lib.load("openssl","bi_flip_bit",2);
+	private static var bi_bitwise_to=neko.Lib.load("openssl","bi_bitwise_to",4);
+	private static var bi_not=neko.Lib.load("openssl","bi_not",1);
+	private static var bi_test_bit=neko.Lib.load("openssl","bi_test_bit",2);
 
 #end
 }
